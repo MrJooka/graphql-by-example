@@ -12,6 +12,10 @@ export const resolvers = {
       console.log(_root);
       return Job.create(input);
     },
+    deleteJob: async (_root, { id }) => {
+      await Job.delete(id);
+      return Job.findAll();
+    },
   },
 
   Company: {
