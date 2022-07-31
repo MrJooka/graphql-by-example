@@ -2,11 +2,14 @@ import { Job, Company } from './db.js';
 
 export const resolvers = {
   Query: {
+    company: (root, { id }) => Company.findById(id),
     job: (root, { id }) => Job.findById(id),
     jobs: () => Job.findAll(),
   },
+  Company: {
+    jobs: (company) => Job.findAll((job) => job.companyId === company.id),
+  },
   Job: {
-    // client에서 filed 추가 안하면 resolve에서 실행 안함
-    company: (job) => (console.log('실행됨'), Company.findById(job.companyId)),
+    company: (job) => Company.findById(job.companyId),
   },
 };
