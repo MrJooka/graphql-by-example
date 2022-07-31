@@ -8,7 +8,10 @@ export const resolvers = {
   },
 
   Mutation: {
-    createJob: (_root, { input }) => Job.create(input),
+    createJob: (_root, { input }, context) => {
+      console.log('[createJob] context:', context);
+      return Job.create(input);
+    },
     deleteJob: (_root, { id }) => Job.delete(id),
     updateJob: (_root, { input }) => Job.update(input),
   },
