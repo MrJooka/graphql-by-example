@@ -16,5 +16,11 @@
     "companyId": "wvdB54Gqbdp_NZTXK9Tue",
     "title": "Full-Stack Developer",
     "description": "We are looking for a Full-Stack Developer familiar with Node.js, Express, and React."
+  },
+  {
+    "id": "0EPtdx3wnwhecX1qyV6MR",
+    "title": "수정한 타이틀",
+    "companyId": "wvdB54Gqbdp_NZTXK9Tue",
+    "description": "수정한 디스크립션"
   }
 ]
