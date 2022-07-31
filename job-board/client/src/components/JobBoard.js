@@ -5,10 +5,14 @@ import { useEffect, useState } from 'react';
 
 function JobBoard() {
   const [jobs, setJobs] = useState([]);
+  const [error, setError] = useState(false);
   useEffect(() => {
-    getJobs().then(setJobs);
+    getJobs()
+      .then(setJobs)
+      .catch((err) => setError(true));
   }, []);
 
+  if (error) return <div>something is Wrong....</div>;
   return (
     <div>
       <h1 className="title">Job Board</h1>
