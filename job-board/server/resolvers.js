@@ -8,13 +8,9 @@ export const resolvers = {
   },
 
   Mutation: {
-    createJob: (_root, { title, companyId, description }) => {
+    createJob: (_root, { input }) => {
       console.log(_root);
-      return Job.create({
-        title,
-        companyId,
-        description,
-      });
+      return Job.create(input);
     },
   },
 
