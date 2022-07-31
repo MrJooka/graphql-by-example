@@ -1,27 +1,23 @@
-export async function getJobs() {
-  const response = await fetch('http://localhost:9000/graphql', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query: `
-        query {
-          jobs {
-            id
-            title
-            company {
-              id
-              name
-              description
-            }
-            description
-          }
-        }
-      `,
-    }),
-  });
+import { request, gql } from 'graphql-request';
 
-  const { data } = await response.json();
+const GRAPHQL_URL = 'http://localhost:9000/graphql';
+
+export async function getJobs() {
+  const query = gql`
+    query {
+      jobs {
+        id
+        title
+        company {
+          id
+          name
+          description
+        }
+        description
+      }
+    }
+  `;
+
+  const data = await request(GRAPHQL_URL, query);
   return data;
 }
