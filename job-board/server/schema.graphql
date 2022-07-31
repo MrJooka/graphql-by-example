@@ -30,7 +30,7 @@ input CreateJobInput {
   description: String
 }
 input UpdateJobInput {
-  jobId: ID!
+  id: ID!
   title: String!
   companyId: ID!
   description: String
