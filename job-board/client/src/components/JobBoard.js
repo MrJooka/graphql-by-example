@@ -6,16 +6,13 @@ import { useEffect, useState } from 'react';
 function JobBoard() {
   const [jobs, setJobs] = useState([]);
   useEffect(() => {
-    getJobs().then((data) => {
-      console.log(data.jobs);
-      setJobs(data.jobs);
-    });
+    getJobs().then(setJobs);
   }, []);
 
   return (
     <div>
       <h1 className="title">Job Board</h1>
-      {jobs.length > 0 && <JobList jobs={jobs} />}
+      <JobList jobs={jobs} />
     </div>
   );
 }
