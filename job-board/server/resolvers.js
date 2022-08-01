@@ -18,8 +18,26 @@ export const resolvers = {
         companyId: user.companyId,
       });
     },
-    deleteJob: (_root, { id }) => Job.delete(id),
-    updateJob: (_root, { input }) => Job.update(input),
+    deleteJob: async (_root, { id }, { user }) => {
+      if (!user) {
+        throw new Error("Unauthorized");
+      }
+      const job = await Job.findById(id);
+      if (user.companyId !== job.companyId) {
+        throw new Error("Job doesn't belongs to user's Company");
+      }
+      return Job.delete(id);
+    },
+    updateJob: async (_root, { input }, { user }) => {
+      if (!user) {
+        throw new Error("Unauthorized");
+      }
+      const job = await Job.findById(id);
+      if (user.companyId !== job.companyId) {
+        throw new Error("Job doesn't belongs to user's Company");
+      }
+      return Job.update(input);
+    },
   },
 
   Company: {
