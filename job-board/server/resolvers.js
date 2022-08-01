@@ -32,10 +32,13 @@ export const resolvers = {
     },
     updateJob: async (_root, { input }, { user }) => {
       rejectIf(!user);
-      const job = await Job.findById(id);
+      const job = await Job.findById(input.id);
       rejectIf(user.companyId !== job.companyId);
 
-      return Job.update(input);
+      return Job.update({
+        ...input,
+        companyId: user.companyId,
+      });
     },
   },
 
