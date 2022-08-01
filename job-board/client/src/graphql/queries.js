@@ -1,4 +1,5 @@
-import { request, gql } from "graphql-request";
+import { gql } from "@apollo/client";
+import { request } from "graphql-request";
 import { getAccessToken } from "../auth";
 
 const GRAPHQL_URL = "http://localhost:9000/graphql";
@@ -42,7 +43,7 @@ export async function getCompany(id) {
 
 export async function getJobs() {
   const query = gql`
-    query {
+    query: {
       jobs {
         id
         title
