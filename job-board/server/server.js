@@ -33,7 +33,9 @@ app.post("/login", async (req, res) => {
 });
 const typeDefs = await readFile("./schema.graphql", "utf8");
 
-const context = { weather: "rainy" };
+const context = () => ({
+  weather: "rainy",
+});
 const apolloServer = new ApolloServer({ typeDefs, resolvers, context });
 await apolloServer.start();
 apolloServer.applyMiddleware({ app, path: "/graphql" });
