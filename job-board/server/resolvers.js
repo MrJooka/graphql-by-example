@@ -1,4 +1,4 @@
-import { Job, Company } from './db.js';
+import { Job, Company } from "./db.js";
 
 export const resolvers = {
   Query: {
@@ -9,7 +9,7 @@ export const resolvers = {
 
   Mutation: {
     createJob: (_root, { input }, context) => {
-      console.log('[createJob] context:', context);
+      console.log("[createJob] context:", context);
       return Job.create(input);
     },
     deleteJob: (_root, { id }) => Job.delete(id),
