@@ -6,17 +6,6 @@ const GRAPHQL_URL = "http://localhost:9000/graphql";
 const client = new ApolloClient({
   uri: GRAPHQL_URL,
   cache: new InMemoryCache(),
-  defaultOptions: {
-    query: {
-      fetchPolicy: "network-only",
-    },
-    mutate: {
-      fetchPolicy: "network-only",
-    },
-    watchQuery: {
-      fetchPolicy: "network-only",
-    },
-  },
 });
 
 export async function createJob(input) {
