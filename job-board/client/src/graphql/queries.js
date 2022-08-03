@@ -60,7 +60,6 @@ export async function getJobs() {
         company {
           id
           name
-          description
         }
         description
       }
