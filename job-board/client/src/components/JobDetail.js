@@ -4,9 +4,8 @@ import { useJob } from '../graphql/hooks';
 
 function JobDetail() {
   const { jobId } = useParams();
-  const { job, error, loading } = useJob(jobId);
+  const { job, loading } = useJob(jobId);
 
-  if (error) return <div>something is Wrong....</div>;
   if (loading) return <div>Loading..</div>;
 
   return (
