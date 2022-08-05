@@ -10,7 +10,7 @@ function JobForm() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
-  const [mutate] = useMutation(CREATE_JOB_MUTATION, {
+  const [mutate, { loading }] = useMutation(CREATE_JOB_MUTATION, {
     onCompleted: ({ job }) => navigate(`/jobs/${job.id}`),
   });
 
@@ -67,7 +67,12 @@ function JobForm() {
           </div>
           <div className="field">
             <div className="control">
-              <button className="button is-link" onClick={handleSubmit}>
+              <button
+                className="button is-link"
+                onClick={handleSubmit}
+                // 요청 중에 버튼 클릭해도 한번만 요청을 보냄.
+                disabled={loading}
+              >
                 Submit
               </button>
             </div>
