@@ -1,10 +1,15 @@
-import { Job, Company } from "./db.js";
+import { Job, Company } from './db.js';
 
 const rejectIf = (condition) => {
   if (condition) {
-    throw new Error("Unauthorized");
+    throw new Error('Unauthorized');
   }
 };
+
+const delay = (ms) =>
+  new Promise((res) => {
+    setTimeout(res, ms);
+  });
 
 export const resolvers = {
   Query: {
@@ -14,10 +19,10 @@ export const resolvers = {
   },
 
   Mutation: {
-    createJob: (_root, { input }, { user }) => {
-      console.log("[createJob] user:]", user);
+    createJob: async (_root, { input }, { user }) => {
+      console.log('[createJob] user:]', user);
       rejectIf(!user);
-
+      await delay(3000);
       return Job.create({
         ...input,
         companyId: user.companyId,
