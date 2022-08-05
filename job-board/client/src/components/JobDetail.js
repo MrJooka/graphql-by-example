@@ -1,17 +1,14 @@
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import { getJob } from '../graphql/queries';
+import { useJob } from '../graphql/hooks';
 
 function JobDetail() {
   const { jobId } = useParams();
-  const [job, setJob] = useState(null);
+  const { job, error, loading } = useJob(jobId);
 
-  useEffect(() => {
-    getJob(jobId).then(setJob);
-  }, [jobId]);
+  if (error) return <div>something is Wrong....</div>;
+  if (loading) return <div>Loading..</div>;
 
-  if (!job) return <p>Loading...</p>;
   return (
     <div>
       <h1 className="title">{job.title}</h1>
