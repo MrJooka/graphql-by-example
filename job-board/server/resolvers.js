@@ -6,11 +6,6 @@ const rejectIf = (condition) => {
   }
 };
 
-const delay = (ms) =>
-  new Promise((res) => {
-    setTimeout(res, ms);
-  });
-
 export const resolvers = {
   Query: {
     company: (root, { id }) => Company.findById(id),
@@ -22,7 +17,6 @@ export const resolvers = {
     createJob: async (_root, { input }, { user }) => {
       console.log('[createJob] user:]', user);
       rejectIf(!user);
-      await delay(3000);
       return Job.create({
         ...input,
         companyId: user.companyId,
