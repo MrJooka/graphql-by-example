@@ -13,15 +13,13 @@ export function useAddMessage() {
         context: {
           headers: { Authorization: 'Bearer ' + getAccessToken() },
         },
-        update: (cache, data) => {
-          const messeagedata = cache.readQuery({
-            query: MESSAGES_QUERY,
-          });
-
-          cache.writeQuery({
-            query: MESSAGES_QUERY,
-            data: { messages: [...messeagedata.messages, data.data.message] },
-          });
+        update: (cache, { data: { message } }) => {
+          cache.updateQuery(
+            {
+              query: MESSAGES_QUERY,
+            },
+            (oldData) => ({ messages: [...oldData.messages, message] })
+          );
         },
       });
       return message;
