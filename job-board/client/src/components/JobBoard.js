@@ -1,17 +1,13 @@
 import JobList from './JobList';
-import { JOBS_QUERY } from '../graphql/queries';
-import { useQuery } from '@apollo/client';
+import { useJobs } from '../graphql/hooks';
 
 function JobBoard() {
-  const { data, error, loading } = useQuery(JOBS_QUERY, {
-    fetchPolicy: 'network-only',
-  });
+  const { jobs, error, loading } = useJobs();
 
-  console.log({ data, error, loading });
+  console.log({ jobs, error, loading });
   if (error) return <div>something is Wrong....</div>;
   if (loading) return <div>Loading..</div>;
 
-  const { jobs } = data;
   return (
     <div>
       <h1 className="title">Job Board</h1>
