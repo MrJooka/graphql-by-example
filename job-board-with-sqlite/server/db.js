@@ -13,7 +13,8 @@ db.on('query', ({ sql, bindings }) => {
   console.log('[db]: ', sql, bindings);
 });
 
-export const createCompanyLoader = () => {
+//TODO IMPORTANT  dataload는 any database에 적용 가능함
+export function createCompanyLoader() {
   return new DataLoader(async (companyIds) => {
     console.log('[companyLoader] companyIds: ', companyIds);
     const companies = await db
@@ -25,4 +26,4 @@ export const createCompanyLoader = () => {
       companies.find((company) => company.id === companyId)
     );
   });
-};
+}
